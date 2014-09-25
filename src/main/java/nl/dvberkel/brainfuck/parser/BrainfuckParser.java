@@ -3,6 +3,7 @@ package nl.dvberkel.brainfuck.parser;
 import nl.dvberkel.brainfuck.language.*;
 import nl.dvberkel.brainfuck.language.instruction.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,8 +21,8 @@ public class BrainfuckParser {
 
     public Program parse(String input) {
         if (instructions.containsKey(input)) {
-            return instructions.get(input);
+            return new Sequence(Arrays.asList((Program)instructions.get(input)));
         }
-        return new DoNothingInstruction();
+        return new Sequence(Arrays.asList((Program) new DoNothingInstruction()));
     }
 }

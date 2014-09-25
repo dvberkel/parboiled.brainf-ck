@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -41,13 +42,13 @@ public class BrainfuckParserTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         List<Object[]> data = new ArrayList<Object[]>();
-        data.add(verifyThat("").parsesAs(new DoNothingInstruction()));
-        data.add(verifyThat("+").parsesAs(new PlusInstruction()));
-        data.add(verifyThat("-").parsesAs(new MinusInstruction()));
-        data.add(verifyThat(">").parsesAs(new IncrementInstruction()));
-        data.add(verifyThat("<").parsesAs(new DecrementInstruction()));
-        data.add(verifyThat(".").parsesAs(new OutputInstruction()));
-        data.add(verifyThat(",").parsesAs(new InputInstruction()));
+        data.add(verifyThat("").parsesAsASequenceOf(new DoNothingInstruction()));
+        data.add(verifyThat("+").parsesAsASequenceOf(new PlusInstruction()));
+        data.add(verifyThat("-").parsesAsASequenceOf(new MinusInstruction()));
+        data.add(verifyThat(">").parsesAsASequenceOf(new IncrementInstruction()));
+        data.add(verifyThat("<").parsesAsASequenceOf(new DecrementInstruction()));
+        data.add(verifyThat(".").parsesAsASequenceOf(new OutputInstruction()));
+        data.add(verifyThat(",").parsesAsASequenceOf(new InputInstruction()));
         return data;
     }
 }
@@ -64,8 +65,8 @@ class BrainfuckParserTestCase {
         this.input = input;
     }
 
-    public Object[] parsesAs(Program program) {
-        this.program = program;
+    public Object[] parsesAsASequenceOf(Program... program) {
+        this.program = new Sequence(Arrays.asList(program));
         return new Object[] {this};
     }
 
