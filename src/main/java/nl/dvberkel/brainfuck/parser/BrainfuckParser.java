@@ -1,28 +1,20 @@
 package nl.dvberkel.brainfuck.parser;
 
-import nl.dvberkel.brainfuck.language.*;
+import nl.dvberkel.brainfuck.language.Program;
 import nl.dvberkel.brainfuck.language.instruction.*;
+import nl.dvberkel.brainfuck.parser.grammar.BrainfuckGrammar;
+import org.parboiled.Parboiled;
+import org.parboiled.parserunners.ReportingParseRunner;
+import org.parboiled.support.ParsingResult;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class BrainfuckParser {
-    private static final Map<String, SingleInstruction> instructions = new HashMap<String, SingleInstruction>();
-
-    static {
-        instructions.put("+", new PlusInstruction());
-        instructions.put("-", new MinusInstruction());
-        instructions.put(">", new IncrementInstruction());
-        instructions.put("<", new DecrementInstruction());
-        instructions.put(".", new OutputInstruction());
-        instructions.put(",", new InputInstruction());
-    }
+    private static final BrainfuckGrammar parser = Parboiled.createParser(BrainfuckGrammar.class);
 
     public Program parse(String input) {
-        if (instructions.containsKey(input)) {
-            return new Sequence(Arrays.asList((Program)instructions.get(input)));
-        }
-        return new Sequence(Arrays.asList((Program) new DoNothingInstruction()));
+        ParsingResult<Program> result = new ReportingParseRunner<Program>(parser.Program()).run(input);
+        return result.parseTreeRoot.getValue();
     }
 }

@@ -2,14 +2,22 @@ package nl.dvberkel.brainfuck.language.instruction;
 
 import nl.dvberkel.brainfuck.language.Program;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 
 public class Sequence implements Program {
-    private final Collection<Program> instructions;
+    private final Collection<Program> instructions = new ArrayList<Program>();
+
+    public Sequence() { }
 
     public Sequence(Collection<Program> instructions) {
-        this.instructions = instructions;
+        this.instructions.addAll(instructions);
+    }
+
+    public boolean addInstruction(Program instruction) {
+        this.instructions.add(instruction);
+        return true;
     }
 
     @Override

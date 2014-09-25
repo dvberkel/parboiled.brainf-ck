@@ -42,7 +42,7 @@ public class BrainfuckParserTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         List<Object[]> data = new ArrayList<Object[]>();
-        data.add(verifyThat("").parsesAsASequenceOf(new DoNothingInstruction()));
+        data.add(verifyThat("").parsesAsASequenceOf());
         data.add(verifyThat("+").parsesAsASequenceOf(new PlusInstruction()));
         data.add(verifyThat("-").parsesAsASequenceOf(new MinusInstruction()));
         data.add(verifyThat(">").parsesAsASequenceOf(new IncrementInstruction()));
