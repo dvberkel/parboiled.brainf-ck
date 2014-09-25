@@ -25,6 +25,9 @@
         <module name="parboiled.brainfuck" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="parboiled.brainfuck" target="1.6" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 
