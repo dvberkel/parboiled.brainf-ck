@@ -23,7 +23,7 @@ public class ParboiledTest {
 
     @Test
     public void shouldCorrectlyDetermineResult() {
-        ParsingResult<?> result = ReportingParseRunner.run(parser.Expression(), "1+2");
+        ParsingResult<?> result = new ReportingParseRunner(parser.Expression()).run("1+2");
 
         Object value = result.parseTreeRoot.getValue();
 
