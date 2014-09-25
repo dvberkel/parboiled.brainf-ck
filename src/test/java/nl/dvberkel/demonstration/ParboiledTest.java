@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.parboiled.Parboiled;
 import org.parboiled.parserunners.ReportingParseRunner;
-import org.parboiled.support.ParseTreeUtils;
 import org.parboiled.support.ParsingResult;
 
 import static org.hamcrest.core.Is.is;
