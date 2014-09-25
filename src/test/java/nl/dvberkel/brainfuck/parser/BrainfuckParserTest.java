@@ -46,8 +46,6 @@ public class BrainfuckParserTest {
         data.add(verifyThat("-").parsesAs(new MinusInstruction()));
         data.add(verifyThat(">").parsesAs(new IncrementInstruction()));
         data.add(verifyThat("<").parsesAs(new DecrementInstruction()));
-        data.add(verifyThat("[").parsesAs(new LeftBracketInstruction()));
-        data.add(verifyThat("]").parsesAs(new RightBracketInstruction()));
         data.add(verifyThat(".").parsesAs(new OutputInstruction()));
         data.add(verifyThat(",").parsesAs(new InputInstruction()));
         return data;

@@ -14,8 +14,6 @@ public class BrainfuckParser {
         instructions.put("-", new MinusInstruction());
         instructions.put(">", new IncrementInstruction());
         instructions.put("<", new DecrementInstruction());
-        instructions.put("[", new LeftBracketInstruction());
-        instructions.put("]", new RightBracketInstruction());
         instructions.put(".", new OutputInstruction());
         instructions.put(",", new InputInstruction());
     }
