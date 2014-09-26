@@ -4,6 +4,7 @@ import nl.dvberkel.brainfuck.language.instruction.PlusInstruction;
 import nl.dvberkel.brainfuck.machine.BrainfuckMachine;
 import org.junit.Test;
 
+import static nl.dvberkel.util.ByteArrayFactory.ofLength;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -15,8 +16,6 @@ public class ProgramTest {
 
         program.executeOn(machine);
 
-        byte[] expected = new byte[3];
-        expected[0] = 1;
-        assertThat(machine.getCells(), is(expected));
+        assertThat(machine.getCells(), is(ofLength(3).withContent(1)));
     }
 }
