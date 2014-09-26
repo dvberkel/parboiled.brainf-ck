@@ -27,7 +27,8 @@ public class BrainfuckGrammar extends BaseParser<Program> {
                 Increment(),
                 Decrement(),
                 Input(),
-                Output()
+                Output(),
+                Bracket()
         );
     }
 
@@ -54,5 +55,7 @@ public class BrainfuckGrammar extends BaseParser<Program> {
     public Rule Output() {
         return Sequence(".", push(new OutputInstruction()));
     }
+
+    public Rule Bracket() { return Sequence("[", Program(), "]", push(new BracketInstruction(pop())));}
 
 }
