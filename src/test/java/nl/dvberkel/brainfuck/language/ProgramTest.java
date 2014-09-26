@@ -47,7 +47,16 @@ public class ProgramTest {
         data.add(verifyThat(new Sequence(new IncrementInstruction(), new PlusInstruction())).executionOnMachineResultsInCells(ofLength(3).withContent(0, 1)));
         data.add(verifyThat(new Sequence(new IncrementInstruction(), new MinusInstruction())).executionOnMachineResultsInCells(ofLength(3).withContent(0, -1)));
         data.add(verifyThat(new Sequence(new DecrementInstruction(), new PlusInstruction())).executionOnMachineResultsInCells(ofLength(3).withContentInReverse(1)));
-        data.add(verifyThat(new Sequence(new DecrementInstruction(), new MinusInstruction())).executionOnMachineResultsInCells(ofLength(3).withContentInReverse(-1)));
+        data.add(verifyThat(new Sequence(new IncrementInstruction(), new PlusInstruction())).executionOnMachineResultsInCells(ofLength(3).withContent(0, 1)));
+        data.add(verifyThat(
+                new Sequence(
+                        new PlusInstruction(),
+                        new BracketInstruction(new Sequence(
+                                new PlusInstruction(),
+                                new IncrementInstruction()
+                        )),
+                        new PlusInstruction()
+                )).executionOnMachineResultsInCells(ofLength(3).withContent(2, 1)));
         return data;
     }
 }

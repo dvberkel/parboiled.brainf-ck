@@ -12,7 +12,9 @@ public class BracketInstruction implements Program {
 
     @Override
     public void executeOn(BrainfuckMachine machine) {
-        /* TODO provide implementation */
+        while (machine.value() != 0) {
+            program.executeOn(machine);
+        }
     }
 
     @Override

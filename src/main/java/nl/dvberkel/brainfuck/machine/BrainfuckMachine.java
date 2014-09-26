@@ -22,10 +22,14 @@ public class BrainfuckMachine {
     }
 
     public void increment() {
-        cellPointer = (cellPointer < (cells.length - 1)) ? cellPointer + 1: 0;
+        cellPointer = (cellPointer < (cells.length - 1)) ? cellPointer + 1 : 0;
     }
 
     public void decrement() {
-        cellPointer = (cellPointer > 0) ? cellPointer - 1: cells.length - 1;
+        cellPointer = (cellPointer > 0) ? cellPointer - 1 : cells.length - 1;
+    }
+
+    public byte value() {
+        return cells[cellPointer];
     }
 }
