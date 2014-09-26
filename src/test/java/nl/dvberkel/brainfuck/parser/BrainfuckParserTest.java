@@ -50,6 +50,7 @@ public class BrainfuckParserTest {
         data.add(verifyThat(".").parsesAsASequenceOf(new OutputInstruction()));
         data.add(verifyThat(",").parsesAsASequenceOf(new InputInstruction()));
         data.add(verifyThat("[]").parsesAsASequenceOf(new BracketInstruction(new Sequence())));
+        data.add(verifyThat("+[-]").parsesAsASequenceOf(new PlusInstruction(), new BracketInstruction(new Sequence(new MinusInstruction()))));
         return data;
     }
 }

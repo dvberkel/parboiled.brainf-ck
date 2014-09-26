@@ -3,6 +3,7 @@ package nl.dvberkel.brainfuck.language.instruction;
 import nl.dvberkel.brainfuck.language.Program;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 
@@ -10,6 +11,8 @@ public class Sequence implements Program {
     private final Collection<Program> instructions = new ArrayList<Program>();
 
     public Sequence() { }
+
+    public Sequence(Program... instructions) { this(Arrays.asList(instructions)); }
 
     public Sequence(Collection<Program> instructions) {
         this.instructions.addAll(instructions);
