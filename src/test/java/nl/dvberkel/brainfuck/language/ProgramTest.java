@@ -2,6 +2,7 @@ package nl.dvberkel.brainfuck.language;
 
 import nl.dvberkel.brainfuck.language.instruction.PlusInstruction;
 import nl.dvberkel.brainfuck.machine.BrainfuckMachine;
+import org.junit.Before;
 import org.junit.Test;
 
 import static nl.dvberkel.util.ByteArrayFactory.ofLength;
@@ -9,10 +10,16 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class ProgramTest {
+    private BrainfuckMachine machine;
+
+    @Before
+    public void createBrainfuckMachine() {
+        machine = new BrainfuckMachine(3);
+    }
+
     @Test
     public void shouldExecuteOnMachine() {
         Program program = new PlusInstruction();
-        BrainfuckMachine machine = new BrainfuckMachine(3);
 
         program.executeOn(machine);
 
