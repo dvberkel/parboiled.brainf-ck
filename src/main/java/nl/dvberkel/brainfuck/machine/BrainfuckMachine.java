@@ -1,12 +1,20 @@
 package nl.dvberkel.brainfuck.machine;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Arrays;
 
 public class BrainfuckMachine {
+    private final InputStream input;
+    private final OutputStream output;
     private final byte[] cells;
     private int cellPointer;
 
-    public BrainfuckMachine(int numberOfCells) {
+    public BrainfuckMachine(int numberOfCells, InputStream input, OutputStream output) {
+        this.input = input;
+        this.output = output;
         this.cells = new byte[numberOfCells];
         this.cellPointer = 0;
     }
@@ -33,5 +41,21 @@ public class BrainfuckMachine {
 
     public byte value() {
         return cells[cellPointer];
+    }
+
+    public void input() {
+        try {
+            cells[cellPointer] = (byte) input.read();
+        } catch (IOException e) {
+            /* TODO handle exception gracefully */
+        }
+    }
+
+    public void output() {
+        try {
+            output.write(cells[cellPointer]);
+        } catch (IOException e) {
+            /* TODO handle exception gracefully */
+        }
     }
 }

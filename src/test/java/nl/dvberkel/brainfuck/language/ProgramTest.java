@@ -2,11 +2,13 @@ package nl.dvberkel.brainfuck.language;
 
 import nl.dvberkel.brainfuck.language.instruction.*;
 import nl.dvberkel.brainfuck.machine.BrainfuckMachine;
+import nl.dvberkel.util.AlwaysOne;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -20,6 +22,7 @@ import static org.junit.Assert.assertThat;
 public class ProgramTest {
     private final Program program;
     private final byte[] result;
+    private ByteArrayOutputStream output;
     private BrainfuckMachine machine;
 
     public ProgramTest(ProgramTestCase testCase) {
@@ -29,7 +32,8 @@ public class ProgramTest {
 
     @Before
     public void createBrainfuckMachine() {
-        machine = new BrainfuckMachine(3);
+        output = new ByteArrayOutputStream();
+        machine = new BrainfuckMachine(3, new AlwaysOne(), output);
     }
 
     @Test
@@ -75,7 +79,7 @@ class ProgramTestCase {
 
     public Object[] executionOnMachineResultsInCells(byte[] result) {
         this.result = result;
-        return new Object[] { this };
+        return new Object[]{this};
     }
 
     public Program getProgram() {
