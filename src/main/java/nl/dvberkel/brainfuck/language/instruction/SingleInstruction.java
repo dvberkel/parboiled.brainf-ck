@@ -2,7 +2,7 @@ package nl.dvberkel.brainfuck.language.instruction;
 
 import nl.dvberkel.brainfuck.language.Program;
 
-public class SingleInstruction implements Program {
+public abstract class SingleInstruction implements Program {
     @Override
     public int hashCode() {
         return 1;

@@ -1,6 +1,7 @@
 package nl.dvberkel.brainfuck.language.instruction;
 
 import nl.dvberkel.brainfuck.language.Program;
+import nl.dvberkel.brainfuck.machine.BrainfuckMachine;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +22,13 @@ public class Sequence implements Program {
     public boolean addInstruction(Program instruction) {
         this.instructions.add(instruction);
         return true;
+    }
+
+    @Override
+    public void executeOn(BrainfuckMachine machine) {
+        for (Program p : instructions) {
+            p.executeOn(machine);
+        }
     }
 
     @Override
