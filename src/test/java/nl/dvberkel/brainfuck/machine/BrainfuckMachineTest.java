@@ -83,5 +83,14 @@ public class BrainfuckMachineTest {
 
         assertThat(cells, is(ofLength(CELL_LENGTH).withContent(1)));
     }
+
+    @Test
+    public void cellsShouldReturnACopy() {
+        byte[] cells = machine.getCells();
+
+        cells[0] = 0;
+
+        assertThat(machine.getCells(), is(ofLength(CELL_LENGTH).withContent()));
+    }
 }
 

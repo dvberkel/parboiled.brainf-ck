@@ -1,5 +1,7 @@
 package nl.dvberkel.brainfuck.machine;
 
+import java.util.Arrays;
+
 public class BrainfuckMachine {
     private final byte[] cells;
     private int cellPointer;
@@ -10,7 +12,7 @@ public class BrainfuckMachine {
     }
 
     public byte[] getCells() {
-        return cells;
+        return Arrays.copyOf(cells, cells.length);
     }
 
     public void plus() {
