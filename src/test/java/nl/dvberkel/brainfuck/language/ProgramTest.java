@@ -1,6 +1,6 @@
 package nl.dvberkel.brainfuck.language;
 
-import nl.dvberkel.brainfuck.language.instruction.PlusInstruction;
+import nl.dvberkel.brainfuck.language.instruction.*;
 import nl.dvberkel.brainfuck.machine.BrainfuckMachine;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,6 +43,11 @@ public class ProgramTest {
     public static Collection<Object[]> data() {
         List<Object[]> data = new ArrayList<Object[]>();
         data.add(verifyThat(new PlusInstruction()).executionOnMachineResultsInCells(ofLength(3).withContent(1)));
+        data.add(verifyThat(new MinusInstruction()).executionOnMachineResultsInCells(ofLength(3).withContent(-1)));
+        data.add(verifyThat(new Sequence(new IncrementInstruction(), new PlusInstruction())).executionOnMachineResultsInCells(ofLength(3).withContent(0, 1)));
+        data.add(verifyThat(new Sequence(new IncrementInstruction(), new MinusInstruction())).executionOnMachineResultsInCells(ofLength(3).withContent(0, -1)));
+        data.add(verifyThat(new Sequence(new DecrementInstruction(), new PlusInstruction())).executionOnMachineResultsInCells(ofLength(3).withContentInReverse(1)));
+        data.add(verifyThat(new Sequence(new DecrementInstruction(), new MinusInstruction())).executionOnMachineResultsInCells(ofLength(3).withContentInReverse(-1)));
         return data;
     }
 }
