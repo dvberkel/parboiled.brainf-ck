@@ -43,11 +43,19 @@ public class ProgramTest {
         assertThat(machine.getCells(), is(result));
     }
 
+    @Test
+    public void outputInstructionShouldProvideOutput() {
+        new Sequence(new PlusInstruction(), new OutputInstruction()).executeOn(machine);
+
+        assertThat(output.toByteArray(), is(ofLength(1).withContent(1)));
+    }
+
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         List<Object[]> data = new ArrayList<Object[]>();
         data.add(verifyThat(new PlusInstruction()).executionOnMachineResultsInCells(ofLength(3).withContent(1)));
         data.add(verifyThat(new MinusInstruction()).executionOnMachineResultsInCells(ofLength(3).withContent(-1)));
+        data.add(verifyThat(new InputInstruction()).executionOnMachineResultsInCells(ofLength(3).withContent(1)));
         data.add(verifyThat(new Sequence(new IncrementInstruction(), new PlusInstruction())).executionOnMachineResultsInCells(ofLength(3).withContent(0, 1)));
         data.add(verifyThat(new Sequence(new IncrementInstruction(), new MinusInstruction())).executionOnMachineResultsInCells(ofLength(3).withContent(0, -1)));
         data.add(verifyThat(new Sequence(new DecrementInstruction(), new PlusInstruction())).executionOnMachineResultsInCells(ofLength(3).withContentInReverse(1)));

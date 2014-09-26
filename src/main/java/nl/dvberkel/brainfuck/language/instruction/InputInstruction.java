@@ -5,7 +5,6 @@ import nl.dvberkel.brainfuck.machine.BrainfuckMachine;
 public class InputInstruction extends SingleInstruction {
     @Override
     public void executeOn(BrainfuckMachine machine) {
-        /* TODO provide implementation */
-
+        machine.input();
     }
 }
